@@ -1,12 +1,326 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cherrytree>
   <bookmarks list=""/>
-  <node name="HACC_Literature_Review" unique_id="1" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1688597976" ts_lastsave="1688597983">
-    <node name="CuROBO" unique_id="2" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1688597983" ts_lastsave="1688598150">
+  <node name="HACC_Literature_Review" unique_id="1" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1688597976" ts_lastsave="1692143054">
+    <node name="CuROBO" unique_id="2" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1688597983" ts_lastsave="1688598264">
       <rich_text>CuRobo: Parallelized Collision-Free Robot Motion Generation
 
 • Motion planning completed within 53ms ~62x faster than SOTA trajectory optimization
-• </rich_text>
+   ◇ Novel parallel noisy line search with a particle-based optimization solver
+   ◇ Parallel geometric planner ~28x faster than RRTConnect
+   ◇ </rich_text>
+    </node>
+  </node>
+  <node name="Ideas" unique_id="12" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1692143054" ts_lastsave="1692143065">
+    <rich_text>• Redefine Scene Clutter
+   ◇ How many frames </rich_text>
+  </node>
+  <node name="PhysX" unique_id="3" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1690917721" ts_lastsave="1691717258">
+    <node name="Load STL" unique_id="4" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1690917729" ts_lastsave="1691096786">
+      <rich_text>• Convert STL to OBJ and load OBJ ? (x)
+• Write a python script to extract vertices and triangles from an STL (numpy-stl). Then read the triangles and vertices into the C++ code and create PxMesh objects
+   ◇ Extract unique vertices and triangles from STL using numpy-stl
+		</rich_text>
+      <rich_text foreground="#57a64a">#!pip install numpy-stl</rich_text>
+      <rich_text>
+		</rich_text>
+      <rich_text foreground="#d8a0df">import</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#c8c8c8">numpy</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#d8a0df">as</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#c8c8c8">np</rich_text>
+      <rich_text>
+		</rich_text>
+      <rich_text foreground="#d8a0df">from</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#c8c8c8">stl</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#d8a0df">import</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#c8c8c8">mesh</rich_text>
+      <rich_text>
+
+		</rich_text>
+      <rich_text foreground="#57a64a"># Load the STL</rich_text>
+      <rich_text>
+		</rich_text>
+      <rich_text foreground="#9cdcfe">your_mesh</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#b4b4b4">=</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#c8c8c8">mesh</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#4ec9b0">Mesh</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#dcdcaa">from_file</rich_text>
+      <rich_text foreground="#b4b4b4">(</rich_text>
+      <rich_text foreground="#e8c9bb">"</rich_text>
+      <rich_text foreground="#ce9178">your_mesh.stl</rich_text>
+      <rich_text foreground="#e8c9bb">"</rich_text>
+      <rich_text foreground="#b4b4b4">)</rich_text>
+      <rich_text>
+		</rich_text>
+      <rich_text foreground="#57a64a"># Extract vertices</rich_text>
+      <rich_text>
+		</rich_text>
+      <rich_text foreground="#9cdcfe">vertices</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#b4b4b4">=</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#c8c8c8">np</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#dcdcaa">unique</rich_text>
+      <rich_text foreground="#b4b4b4">(</rich_text>
+      <rich_text foreground="#9cdcfe">your_mesh</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#dadada">vectors</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#dadada">reshape</rich_text>
+      <rich_text foreground="#b4b4b4">([</rich_text>
+      <rich_text foreground="#4ec9b0">int</rich_text>
+      <rich_text foreground="#b4b4b4">(</rich_text>
+      <rich_text foreground="#9cdcfe">your_mesh</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#dadada">vectors</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#dadada">size</rich_text>
+      <rich_text foreground="#b4b4b4">/</rich_text>
+      <rich_text foreground="#b5cea8">3</rich_text>
+      <rich_text foreground="#b4b4b4">),</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#b5cea8">3</rich_text>
+      <rich_text foreground="#b4b4b4">]),</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#9a9a9a">axis</rich_text>
+      <rich_text foreground="#b4b4b4">=</rich_text>
+      <rich_text foreground="#b5cea8">0</rich_text>
+      <rich_text foreground="#b4b4b4">)</rich_text>
+      <rich_text>
+		</rich_text>
+      <rich_text foreground="#57a64a"># Extract triangle face indices</rich_text>
+      <rich_text>
+		</rich_text>
+      <rich_text foreground="#9cdcfe">indices</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#b4b4b4">=</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#c8c8c8">np</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#dcdcaa">array</rich_text>
+      <rich_text foreground="#b4b4b4">([[</rich_text>
+      <rich_text foreground="#c8c8c8">np</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#dcdcaa">argwhere</rich_text>
+      <rich_text foreground="#b4b4b4">((</rich_text>
+      <rich_text foreground="#9cdcfe">vertices</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#b4b4b4">==</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#9cdcfe">your_mesh</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#dadada">vectors</rich_text>
+      <rich_text foreground="#b4b4b4">[</rich_text>
+      <rich_text foreground="#9cdcfe">i</rich_text>
+      <rich_text foreground="#b4b4b4">][</rich_text>
+      <rich_text foreground="#9cdcfe">j</rich_text>
+      <rich_text foreground="#b4b4b4">]).</rich_text>
+      <rich_text foreground="#dadada">all</rich_text>
+      <rich_text foreground="#b4b4b4">(</rich_text>
+      <rich_text foreground="#9a9a9a">axis</rich_text>
+      <rich_text foreground="#b4b4b4">=</rich_text>
+      <rich_text foreground="#b5cea8">1</rich_text>
+      <rich_text foreground="#b4b4b4">))[</rich_text>
+      <rich_text foreground="#b5cea8">0</rich_text>
+      <rich_text foreground="#b4b4b4">][</rich_text>
+      <rich_text foreground="#b5cea8">0</rich_text>
+      <rich_text foreground="#b4b4b4">]</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#d8a0df">for</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#9cdcfe">j</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#d8a0df">in</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#4ec9b0">range</rich_text>
+      <rich_text foreground="#b4b4b4">(</rich_text>
+      <rich_text foreground="#b5cea8">3</rich_text>
+      <rich_text foreground="#b4b4b4">)]</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#d8a0df">for</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#9cdcfe">i</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#d8a0df">in</rich_text>
+      <rich_text foreground="#dadada"> </rich_text>
+      <rich_text foreground="#4ec9b0">range</rich_text>
+      <rich_text foreground="#b4b4b4">(</rich_text>
+      <rich_text foreground="#9cdcfe">your_mesh</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#dadada">vectors</rich_text>
+      <rich_text foreground="#b4b4b4">.</rich_text>
+      <rich_text foreground="#dadada">shape</rich_text>
+      <rich_text foreground="#b4b4b4">[</rich_text>
+      <rich_text foreground="#b5cea8">0</rich_text>
+      <rich_text foreground="#b4b4b4">])])</rich_text>
+      <rich_text>
+
+</rich_text>
+    </node>
+    <node name="Code Refactor" unique_id="5" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1691096807" ts_lastsave="1691096834">
+      <rich_text>• Decouple scene configuration from the SceneManager
+   ◇ Use config files to set environment variables before you call the binary
+   ◇ Set paramaters for each scene by reading from environment variables</rich_text>
+    </node>
+    <node name="Issues" unique_id="6" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1691188188" ts_lastsave="1691717241">
+      <rich_text>1. How can we get a boolean when two actors are in contact ? How do we know when there is a collision from the code ?
+2. Performance comparison between PhysX CPU and GPU not possible
+   1) RigidDynamic actors with triangle mesh objects require SDF computations
+   2) SDF computations are currently only supported on the GPU 
+3. RigidStatic &lt;&gt; RigidKinematic does not generate any contacts
+   1) RigidDynamic &lt;&gt; RigidKinematic is also not giving contact info with GPU acceleration
+   2) Need to figure out why ? 
+   3) Potentially also fixes contact generation for RigidStatic &lt;&gt; RigidKinematic with GPU acceleration in which case we dont need to use SDF anymore
+4. How can we get the penetration depth ?</rich_text>
+    </node>
+    <node name="Contact Generation" unique_id="11" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1691717258" ts_lastsave="1692058616">
+      <rich_text>Contact generation reported from </rich_text>
+      <rich_text foreground="#dcdcaa">SimulationStatistics</rich_text>
+      <rich_text>
+
+Primitive Collider
+• CPU - </rich_text>
+      <rich_text background="#1a069c283fd5">Yes</rich_text>
+      <rich_text>
+   ◇ What happens when you overshoot the kinematic body such that it penetrates the static body ?
+      ▪ It still generates contacts
+• GPU - </rich_text>
+      <rich_text background="#e0e01b1b2424">No</rich_text>
+      <rich_text>
+   ◇ What happens when you switch to </rich_text>
+      <rich_text foreground="#dcdcaa">RigidDynamic</rich_text>
+      <rich_text> ENV objects instead of </rich_text>
+      <rich_text foreground="#dcdcaa">RigidStatic</rich_text>
+      <rich_text> ? Maybe GPU does not support static&lt;&gt;kine contact generation ?
+      ▪ </rich_text>
+      <rich_text background="#e0e01b1b2424">No</rich_text>
+      <rich_text> contacts reported
+   ◇ What happens when you switch to </rich_text>
+      <rich_text foreground="#dcdcaa">PxDefaultSimulationFilterShader</rich_text>
+      <rich_text> ?
+      ▪ </rich_text>
+      <rich_text background="#e0e01b1b2424">No</rich_text>
+      <rich_text> contacts reported
+   ◇ Check if we get any contacts from the </rich_text>
+      <rich_text foreground="#dcdcaa">ContactReportCallback</rich_text>
+      <rich_text> ? Maybe the </rich_text>
+      <rich_text foreground="#dcdcaa">SimulationStatistics</rich_text>
+      <rich_text> is not supported for GPU ?
+      ▪ Wrote a snippet that reports number of contacts from </rich_text>
+      <rich_text foreground="#dcdcaa">ContactReportCallback</rich_text>
+      <rich_text> with CPU executions
+      ▪ Extend / create a new snippet for GPU and perform the same check using </rich_text>
+      <rich_text foreground="#dcdcaa">ContactReportCallback</rich_text>
+      <rich_text> and see if we get the contacts
+      ▪ </rich_text>
+      <rich_text background="#1a069c283fd5">Yes</rich_text>
+      <rich_text> - GPU primitive static&lt;&gt;kinematic collision generates contacts from the </rich_text>
+      <rich_text foreground="#dcdcaa">ContactReportCallback</rich_text>
+      <rich_text>
+
+Mesh Collider
+• CPU - </rich_text>
+      <rich_text background="#e0e01b1b2424">No</rich_text>
+      <rich_text>
+   ◇ Check if we get contacts from the </rich_text>
+      <rich_text foreground="#dcdcaa">ContactReportCallback</rich_text>
+      <rich_text>
+      ▪ </rich_text>
+      <rich_text background="#e0e01b1b2424">No</rich_text>
+      <rich_text>
+   ◇ Create similar snippet as Primitive Collider but using triangle mesh geometry
+      ▪ Does the same contact report callback generate contact information ? </rich_text>
+      <rich_text background="#e0e01b1b2424">No</rich_text>
+      <rich_text>
+         - Is the </rich_text>
+      <rich_text foreground="#dcdcaa">onContact()</rich_text>
+      <rich_text> method called when the geometries intersect ? </rich_text>
+      <rich_text background="#e0e01b1b2424">No</rich_text>
+      <rich_text>
+         - Why is the </rich_text>
+      <rich_text foreground="#dcdcaa">onContact()</rich_text>
+      <rich_text> method not triggered ? Static TriMesh &lt;&gt; Kinematic TriMesh not supported 
+      ▪ Does enabling CCD generate contact information ?
+         - </rich_text>
+      <rich_text background="#e5e5a5a50a0a">WARN</rich_text>
+      <rich_text> CCD not supported for static &lt;&gt; kinematic interactions
+      ▪ Does Kinematic &lt;&gt; Dynamic collision generate contacts with </rich_text>
+      <rich_text foreground="#dcdcaa">ContactReportCallback</rich_text>
+      <rich_text> ? </rich_text>
+      <rich_text background="#1a069c283fd5">Yes</rich_text>
+      <rich_text>
+      ▪ </rich_text>
+      <rich_text family="monospace" background="#f6f6f5f5f4f4" foreground="#000066660000">SOLUTION</rich_text>
+      <rich_text> - </rich_text>
+      <rich_text underline="single" weight="heavy">Convert Kinematic mesh to convex mesh and keep static mesh as triangle mesh</rich_text>
+      <rich_text>
+• GPU - </rich_text>
+      <rich_text background="#e0e01b1b2424">No</rich_text>
+      <rich_text>
+   ◇ Check if we get contacts from the </rich_text>
+      <rich_text foreground="#dcdcaa">ContactReportCallback</rich_text>
+      <rich_text>
+      ▪ </rich_text>
+      <rich_text background="#e0e01b1b2424">No</rich_text>
+      <rich_text>
+
+Look into </rich_text>
+      <rich_text foreground="#dcdcaa">SnippetKinematicsSoftBody</rich_text>
+    </node>
+  </node>
+  <node name="FCL" unique_id="8" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1691546209" ts_lastsave="1691615605">
+    <node name="Issues" unique_id="9" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1691546221" ts_lastsave="1691546272">
+      <rich_text>• Render the final frame in MeshCat cpp
+• Currentl, no collisions are happening
+   ◇ My gut feeling is that we have not setup the objects properly
+   ◇ Final frame render will give a good idea of what is happening</rich_text>
+    </node>
+    <node name="Collision Notes" unique_id="10" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1691615605" ts_lastsave="1691616431">
+      <rich_text>• Robot collision with the world
+   ◇ </rich_text>
+      <rich_text link="webs https://github.com/ros-planning/moveit2/blob/main/moveit_core/collision_detection_fcl/src/collision_env_fcl.cpp#L328-L329">https://github.com/ros-planning/moveit2/blob/main/moveit_core/collision_detection_fcl/src/collision_env_fcl.cpp#L328-L329</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text justification="left"></rich_text>
+      <rich_text>
+
+   ◇ World collisions with the different links of the robot happens sequentially in a for loop
+</rich_text>
+      <codebox char_offset="160" justification="left" frame_width="923" frame_height="100" width_in_pixels="1" syntax_highlighting="cpp" highlight_brackets="1" show_line_numbers="1">void CollisionEnvFCL::checkRobotCollisionHelper(const CollisionRequest&amp; req, CollisionResult&amp; res,
+                                                const moveit::core::RobotState&amp; state,
+                                                const AllowedCollisionMatrix* acm) const
+{
+  FCLObject fcl_obj;
+  constructFCLObjectRobot(state, fcl_obj);
+
+  CollisionData cd(&amp;req, &amp;res, acm);
+  cd.enableGroup(getRobotModel());
+  for (std::size_t i = 0; !cd.done_ &amp;&amp; i &lt; fcl_obj.collision_objects_.size(); ++i)
+    manager_-&gt;collide(fcl_obj.collision_objects_[i].get(), &amp;cd, &amp;collisionCallback);
+
+  if (req.distance)
+  {
+    DistanceRequest dreq;
+    DistanceResult dres;
+
+    dreq.group_name = req.group_name;
+    dreq.acm = acm;
+    dreq.enableGroup(getRobotModel());
+    distanceRobot(dreq, dres, state);
+    res.distance = dres.minimum_distance.distance;
+  }
+}</codebox>
     </node>
   </node>
 </cherrytree>
