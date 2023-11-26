@@ -11,7 +11,7 @@
    ◇ </rich_text>
     </node>
   </node>
-  <node name="Ideas" unique_id="12" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1692143054" ts_lastsave="1693409086">
+  <node name="Ideas" unique_id="12" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1692143054" ts_lastsave="1696433250">
     <rich_text strikethrough="true">• Redefine Scene Clutter - Clutter Index
    ◇ Fraction of frames that actually end up generating contacts
    ◇ Current scene has high clutter index (0.95)
@@ -25,8 +25,36 @@
 So doing an exact convex decomposition is an NP-hard problem.
 </rich_text>
   </node>
-  <node name="Bullet" unique_id="13" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1693940860" ts_lastsave="1693940877">
-    <node name="scratch" unique_id="14" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1693940877" ts_lastsave="1694019691">
+  <node name="Papers" unique_id="16" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1696433250" ts_lastsave="1696436183">
+    <rich_text>Motions in Microseconds via Vectorized Sampling-Based Planning
+• Accelerate FK
+• Accelerate Collision checking
+• Accelerated on CPUs
+
+Parallelism in Motion Planning
+• Coarse grained - running multiple planners in different threads. Or CC in a different thread
+• Fine grained - (works on primitive operations) Checking multiple states for collisions simultaneously in the same thread
+   ◇ NN checks to find nearby states
+   ◇ State validity function (collision free state sampling)
+   ◇ Local planner (steering function) to create edges / grow the tree
+   ◇ Edge validity function
+
+KEY POINT: Operate over “vectors” of states in parallel
+KEY POINT: Novel Struct-of-Arrays (SoA)
+KEY POINT: Conditional branching
+
+Vectorized FK
+• Sequential pose compute but on multiple config simultaneously
+• Tracing compiler to generate an unrolled FK loop
+
+
+Vectorized CC
+• Use simplified representation of robots and obstacles using primitives (spheres, cylinders and cuboids)
+• Model the robot links using hierarchy of spheres
+• We check batches of robot poses for selfcollision  environment collision in parallel and reject the whole batch if any collide</rich_text>
+  </node>
+  <node name="Bullet" unique_id="13" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1693940860" ts_lastsave="1694123546">
+    <node name="scratch" unique_id="14" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1693940877" ts_lastsave="1694985314">
       <rich_text>• CommonInterfaces
    ◇ Default
    ◇ GuiHelper
@@ -37,7 +65,210 @@ So doing an exact convex decomposition is an NP-hard problem.
          - Window
          - Camera
 
-• KinematicRigidBodyExample.cpp - To move the objects kinematically (similar to setGlobalPose() in PhysX)</rich_text>
+• KinematicRigidBodyExample.cpp - To move the objects kinematically (similar to setGlobalPose() in PhysX)
+
+
+
+TAKE A STEP BACK AND CREATE A PRIMITIVES ONLY CPU SCENE -- GET THE FRAMEWORK CORRECT
+
+
+</rich_text>
+      <rich_text foreground="#808080">#!/bin/sh</rich_text>
+      <rich_text>
+
+</rich_text>
+      <rich_text foreground="#f32973">if</rich_text>
+      <rich_text> [ </rich_text>
+      <rich_text foreground="#e6e5e2">-e</rich_text>
+      <rich_text> CMakeCache.txt ]; </rich_text>
+      <rich_text foreground="#f32973">then</rich_text>
+      <rich_text>
+  </rich_text>
+      <rich_text foreground="#d37d04">rm</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">CMakeCache.txt</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#f32973">fi</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#d37d04">mkdir</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-p</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">build_cmake</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#ae81ff">cd</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">build_cmake</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#d37d04">cmake</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-DBUILD_PYBULLET=ON</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-DBUILD_PYBULLET_NUMPY=ON</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-DUSE_DOUBLE_PRECISION=ON</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-DBT_USE_EGL=ON</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-DCMAKE_BUILD_TYPE=Release</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">..</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e6e5e2">||</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#ae81ff">exit</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#d85fa7">1</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#d37d04">make</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-j</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">$(</rich_text>
+      <rich_text foreground="#ae81ff">command</rich_text>
+      <rich_text foreground="#e44038"> nproc </rich_text>
+      <rich_text foreground="#e6e5e2">2&gt;</rich_text>
+      <rich_text foreground="#e44038">/dev/null </rich_text>
+      <rich_text foreground="#e6e5e2">||</rich_text>
+      <rich_text foreground="#e44038"> </rich_text>
+      <rich_text foreground="#ae81ff">echo</rich_text>
+      <rich_text foreground="#e44038"> </rich_text>
+      <rich_text foreground="#d85fa7">12</rich_text>
+      <rich_text foreground="#e44038">)</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e6e5e2">||</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#ae81ff">exit</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#d85fa7">1</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#ae81ff">cd</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">examples</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#ae81ff">cd</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">pybullet</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#f32973">if</rich_text>
+      <rich_text> [ </rich_text>
+      <rich_text foreground="#e6e5e2">-e</rich_text>
+      <rich_text> pybullet.dylib ]; </rich_text>
+      <rich_text foreground="#f32973">then</rich_text>
+      <rich_text>
+  </rich_text>
+      <rich_text foreground="#d37d04">ln</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-f</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-s</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">pybullet.dylib</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">pybullet.so</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#f32973">fi</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#f32973">if</rich_text>
+      <rich_text> [ </rich_text>
+      <rich_text foreground="#e6e5e2">-e</rich_text>
+      <rich_text> pybullet_envs ]; </rich_text>
+      <rich_text foreground="#f32973">then</rich_text>
+      <rich_text>
+  </rich_text>
+      <rich_text foreground="#d37d04">rm</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">pybullet_envs</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#f32973">fi</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#f32973">if</rich_text>
+      <rich_text> [ </rich_text>
+      <rich_text foreground="#e6e5e2">-e</rich_text>
+      <rich_text> pybullet_data ]; </rich_text>
+      <rich_text foreground="#f32973">then</rich_text>
+      <rich_text>
+  </rich_text>
+      <rich_text foreground="#d37d04">rm</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">pybullet_data</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#f32973">fi</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#f32973">if</rich_text>
+      <rich_text> [ </rich_text>
+      <rich_text foreground="#e6e5e2">-e</rich_text>
+      <rich_text> pybullet_utils ]; </rich_text>
+      <rich_text foreground="#f32973">then</rich_text>
+      <rich_text>
+  </rich_text>
+      <rich_text foreground="#d37d04">rm</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">pybullet_utils</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#f32973">fi</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#d37d04">ln</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-s</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">../../../examples/pybullet/gym/pybullet_envs</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">.</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#d37d04">ln</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-s</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">../../../examples/pybullet/gym/pybullet_data</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">.</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#d37d04">ln</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#56b6c2">-s</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">../../../examples/pybullet/gym/pybullet_utils</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">.</rich_text>
+      <rich_text>
+</rich_text>
+      <rich_text foreground="#ae81ff">echo</rich_text>
+      <rich_text> </rich_text>
+      <rich_text foreground="#e44038">"Completed build of Bullet."</rich_text>
+      <rich_text>
+
+
+</rich_text>
+    </node>
+    <node name="ToDos" unique_id="15" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1694123546" ts_lastsave="1694196711">
+      <rich_text>• Create a local version of </rich_text>
+      <rich_text family="monospace" background="#d2c5aa8e485d" foreground="#000000000000">main_opengl_single_example.cpp</rich_text>
+      <rich_text> within </rich_text>
+      <rich_text family="monospace">collision_tests</rich_text>
+      <rich_text>
+• Create a scene with gripper and tote meshes
+• How can I move the objects kinematically ?
+
+• Write my own b3GpuCollisionPipeline ? (remove the dynamics)</rich_text>
     </node>
   </node>
   <node name="FCL" unique_id="8" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1691546209" ts_lastsave="1693940871">
@@ -84,7 +315,7 @@ So doing an exact convex decomposition is an NP-hard problem.
 }</codebox>
     </node>
   </node>
-  <node name="PhysX" unique_id="3" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1690917721" ts_lastsave="1691717258">
+  <node name="PhysX" unique_id="3" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1690917721" ts_lastsave="1697821316">
     <node name="Load STL" unique_id="4" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1690917729" ts_lastsave="1691096786">
       <rich_text>• Convert STL to OBJ and load OBJ ? (x)
 • Write a python script to extract vertices and triangles from an STL (numpy-stl). Then read the triangles and vertices into the C++ code and create PxMesh objects
@@ -346,6 +577,21 @@ Mesh Collider
 
 Look into </rich_text>
       <rich_text foreground="#dcdcaa">SnippetKinematicsSoftBody</rich_text>
+    </node>
+  </node>
+  <node name="SW - Product (E1)" unique_id="17" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1697821316" ts_lastsave="1697828093">
+    <rich_text>Questions:
+1. Will I need to relocate to SF ? I dont have permit to work in the US
+2. What will the interview process be like ?
+   1) How many rounds ?
+   2) What should I prepare ?
+   3) Will it be as rigourous as if I were to apply as an outsider ? No</rich_text>
+  </node>
+  <node name="MP2_Integration" unique_id="18" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1697828093" ts_lastsave="1697828119">
+    <node name="Preet_meeting_2" unique_id="19" prog_lang="custom-colors" tags="" readonly="0" nosearch_me="0" nosearch_ch="0" custom_icon_id="0" is_bold="0" foreground="" ts_creation="1697828119" ts_lastsave="1698694492">
+      <rich_text>• Get PhysX Visualization working
+• Implement the Collision Manager and Discrete Collision Manager
+• </rich_text>
     </node>
   </node>
 </cherrytree>
